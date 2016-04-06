@@ -1,0 +1,7 @@
+deactivate_hub: false
+smtp_delivery_method: :smtp # :smtp or :letter_opener
+smtp_host: 'smtp'
+smtp_port: 25
+app_version: 'Latest Docker 3.3.0'
+devise_secret_key: '04f58176594e0570ef0cdf42973ec230dc60a07142a41c9efc4eda572633bde3c16ed3d7c1828800a808e15cbaef5894a31354a18172d9995'
+
