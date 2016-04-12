@@ -1,4 +1,4 @@
-deactivate_hub: false
+deactivate_formats: 'hub,sig'
 smtp_delivery_method: :smtp # :smtp or :letter_opener
 smtp_host: 'smtp'
 smtp_port: 25
