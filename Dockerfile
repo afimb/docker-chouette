@@ -84,6 +84,6 @@ RUN chown -R chouette: /home/chouette/
 EXPOSE 8080 9990 3000 5432
 
 COPY config/docker-entrypoint.sh /
-VOLUME ["/var/lib/pgsql/9.3"] # TODO : Add volume for referentials directory
+VOLUME ["/var/lib/pgsql/9.3", "/home/chouette/chouette-gui/referentials"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

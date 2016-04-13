@@ -36,6 +36,11 @@ if [ ! -e ${POSTGRES_HOME}/data/pg_hba.conf ];then
 
 fi
 
+su - chouette <<'EOF'
+cd ~/chouette-gui
+grep 'SECRET_KEY' config/application.yml && SECRET_KEY=$(bundle exec rake secret | tail -1) && sed -i -e s/SECRET_KEY/${SECRET_KEY}/g config/application.yml
+EOF
+
 service postgresql-9.3 stop
 service postgresql-9.3 start
 service chouette start

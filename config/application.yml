@@ -1,7 +1,21 @@
-deactivate_formats: 'hub,sig'
-smtp_delivery_method: :smtp # :smtp or :letter_opener
-smtp_host: 'smtp'
-smtp_port: 25
+domain_name: 'chouette.mobi'
+secret_key_base: 'SECRET_KEY'
+devise_secret_key: 'SECRET_KEY'
+api_endpoint: 'http://localhost:8080/chouette_iev/'
+google_analytic_tracker:
+geoportail_api_key:
+newrelic_licence_key:
+osrm_endpoint: 'http://router.project-osrm.org'
 app_version: 'Latest Docker 3.3.0'
-devise_secret_key: '04f58176594e0570ef0cdf42973ec230dc60a07142a41c9efc4eda572633bde3c16ed3d7c1828800a808e15cbaef5894a31354a18172d9995'
-
+deactivate_formats_referential: # For example: 'hub,sig,neptune'
+deactivate_formats_import: # For example: 'hub,sig,neptune'
+deactivate_formats_export: # For example: 'hub,sig,neptune'
+smtp_delivery_method: 'smtp'
+smtp_host: 'smtp'
+smtp_port: '25'
+smtp_domain:
+smtp_user_name:
+smtp_password:
+smtp_authentication:
+mailer_sender: 'no-reply@chouette.mobi'
+capistrano_deploy_user:
