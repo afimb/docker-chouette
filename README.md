@@ -26,7 +26,7 @@ Then open your browser to: http://localhost:1080
 
 Current stable version is 3.2 if you want to test the next version change at the end of the line `3.2` to `latest`
 
-`docker run -d --link smtp -e SMTP_HOST=smtp -e TZ=Europe/Paris -v datas/pgsql/9.3:/var/lib/pgsql/9.3 -v datas/referentials:/home/chouette-gui/referentials -p 3000:3000 -it --name docker-chouette afimb/docker-chouette:3.2`
+`docker run -d --link smtp -e SMTP_HOST=smtp -e TZ=Europe/Paris -p 3000:3000 -it --name docker-chouette afimb/docker-chouette:3.2`
 
 Then open your browser to: http://localhost:3000
 
