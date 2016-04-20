@@ -1,10 +1,6 @@
 FROM centos:6.6
 MAINTAINER dlallemand@cityway.fr
 
-ENV CHOUETTE_IEV_VERSION 3.3.1-SNAPSHOT
-ENV CHOUETTE_WEB_VERSION develop
-ENV MAVEN_REPO maven-snapshot
-
 RUN sed -i "s/\[base\]/\[base\]\nexclude=postgresql*/g" /etc/yum.repos.d/CentOS-Base.repo && \
     sed -i "s/\[updates\]/\[updates\]\nexclude=postgresql*/g" /etc/yum.repos.d/CentOS-Base.repo
 
@@ -26,3 +22,5 @@ RUN gpg2 --keyserver  hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C27546
 RUN curl -L https://get.rvm.io | bash -s stable --rails
 RUN usermod -a -G rvm chouette
 RUN su - chouette -c "rvm install ruby-2.3.0 && rvm --default use 2.3.0 && gem install bundler && bundle config build.pg --with-pg-config=/usr/pgsql-9.3/bin/pg_config"
+
+# docker build -t chouette-centos .

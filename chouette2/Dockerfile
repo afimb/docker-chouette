@@ -2,7 +2,7 @@ FROM chouette-centos
 MAINTAINER dlallemand@cityway.fr
 
 #-- Install Chouette 2
-RUN su - chouette -c "git clone -b ${CHOUETTE_WEB_VERSION} git://github.com/afimb/chouette2 ~/chouette-gui/ && cd ~/chouette-gui && bundle install"
+RUN su - chouette -c "git clone -b develop git://github.com/afimb/chouette2 ~/chouette-gui/ && cd ~/chouette-gui && bundle install"
 
 #-- Configure Chouette2
 RUN mkdir /home/chouette/bin
@@ -14,9 +14,11 @@ COPY config/smtp_settings.rb /home/chouette/chouette-gui/config/initializers/
 
 RUN chown -R chouette: /home/chouette/
 
-EXPOSE 8080 9990 3000 5432
+EXPOSE 3000
 
 COPY config/docker-entrypoint.sh /
-VOLUME ["/var/lib/pgsql/9.3"] # TODO : Add volume for referentials directory
+VOLUME ["/home/chouette/chouette-gui/referentials"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
+# docker build -t chouette2 .
+# docker run -it --name chouette2 --link chouette-postgres:chouette-postgres -d chouette2

@@ -7,7 +7,7 @@ source $CHOUETTE_HOME/bin/chouette.conf
 cd $CHOUETTE_HOME/chouette-gui/
 export BROWSER=/usr/bin/lynx
 echo "RAILS_ENV=$RAILS_ENV"
-export RAILS_ENV=${RAILS_ENV:-development} 
+export RAILS_ENV=${RAILS_ENV:-production}
 
 if [ "$RAILS_ENV" == "development" ];then
 	echo "Chouette migrate..."
