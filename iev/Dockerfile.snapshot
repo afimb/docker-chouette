@@ -1,7 +1,7 @@
 FROM jboss/wildfly:9.0.2.Final
 
-ENV CHOUETTE_IEV_VERSION 3.3.1
-ENV MAVEN_REPO maven
+ENV CHOUETTE_IEV_VERSION 3.3.1-SNAPSHOT
+ENV MAVEN_REPO maven-snapshot
 
 USER root
 
@@ -25,8 +25,12 @@ RUN wget -q http://www.hibernatespatial.org/repository/org/hibernate/hibernate-s
     sed -i '/<dependencies>/a\\t<module name="org.postgres"/>'  /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml
 
 RUN wget -q https://jdbc.postgresql.org/download/postgresql-9.3-1103.jdbc41.jar -P /tmp && \
-    wget -q http://${MAVEN_REPO}.chouette.mobi/mobi/chouette/chouette_iev/maven-metadata.xml && \
-    CHOUETTE_EAR_VERSION=`sed -n 's:.*<release>\(.*\)</release>.*:\1:p' maven-metadata.xml` && \
+    wget -q http://${MAVEN_REPO}.chouette.mobi/mobi/chouette/chouette_iev/${CHOUETTE_IEV_VERSION}/maven-metadata.xml && \
+    CHOUETTE_EAR_VERSION=`sed -n 's:.*<version>\(.*\)</version>.*:\1:p' maven-metadata.xml` && \
+    CHOUETTE_EAR_VERSION=${CHOUETTE_EAR_VERSION%SNAPSHOT} && \
+    CHOUETTE_EAR_VERSION+=`sed -n 's:.*<timestamp>\(.*\)</timestamp>.*:\1:p' maven-metadata.xml` && \
+    CHOUETTE_EAR_VERSION+='-' && \
+    CHOUETTE_EAR_VERSION+=`sed -n 's:.*<buildNumber>\(.*\)</buildNumber>.*:\1:p' maven-metadata.xml` && \
     wget -q http://${MAVEN_REPO}.chouette.mobi/mobi/chouette/chouette_iev/${CHOUETTE_IEV_VERSION}/chouette_iev-${CHOUETTE_EAR_VERSION}.ear && \
     cp chouette_iev-*.ear /tmp/chouette.ear
 
