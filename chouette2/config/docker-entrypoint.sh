@@ -1,4 +1,6 @@
 #!/bin/bash
-service chouette start
+/home/chouette/bin/chouette.sh
+
+tail -f /home/chouette/bin/chouette.sh
 
 

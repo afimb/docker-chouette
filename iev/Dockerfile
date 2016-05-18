@@ -1,16 +1,19 @@
 FROM jboss/wildfly:9.0.2.Final
+MAINTAINER Cityway
+
+LABEL Description="Chouette IEV" \
+      Usage="docker run -it --name chouette-iev --link chouette-postgres:chouette-postgres -p 9991:9990 -p 8081:8080 -d chouette-iev" \
+      BuildUsage="docker build -t chouette-iev ." \
+      License="CECILL/B" \
+      Version="3.0"
 
 USER root
 
 RUN yum -y install wget
 
-COPY config/wildfly-datasources.cli /tmp/
-COPY config/docker-entrypoint.sh /
-
 USER jboss
 
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
-
 
 ###-- Update hibernate module
 RUN wget -q http://www.hibernatespatial.org/repository/org/hibernate/hibernate-spatial/4.3/hibernate-spatial-4.3.jar -P /tmp && \
@@ -30,9 +33,8 @@ RUN wget -q http://central.maven.org/maven2/org/postgresql/postgresql/9.4-1206-j
 
 EXPOSE 8080 9990
 
-# ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY config/wildfly-datasources.cli /tmp/
+COPY config/docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD [ "/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
 
-# docker build -t chouette-iev .
-# docker run -it --name chouette-iev --link chouette-postgres:chouette-postgres -p 9991:9990 -p 8081:8080 -d chouette-iev
-
-# After starting the container, log inside and execute docker-entrypoint.sh manualy
