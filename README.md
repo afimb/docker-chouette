@@ -1,13 +1,12 @@
 # docker-chouette
 
 ```
-docker build -t afimb/docker-chouette .
+docker-compose up
 ```
 
 ```
-docker run -d --link smtp -e SMTP_HOST=smtp -e TZ=Europe/Paris -p 3000:3000 -it --name docker-chouette afimb/docker-chouette
+wait containers to be started...
+go to http://localhost:3000
 ```
 
-```
-docker start docker-chouette
 ```
