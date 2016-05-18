@@ -3,10 +3,6 @@
 ```
 docker-compose up
 ```
-
-```
 wait containers to be started...
-go to http://localhost:3000
-```
 
-```
+then go to http://localhost:3000
