@@ -2,7 +2,7 @@ FROM centos:6.6
 MAINTAINER Cityway
 
 LABEL Description="Chouette GUI" \
-      Usage="docker run -it --name chouette2 --link chouette-postgres:chouette-postgres -d chouette2" \
+      Usage="docker run -it --name chouette2 --link chouette-postgres:chouette-postgres --link smtp:smtp --link chouette-iev:chouette-iev -p 3000:3000 -d chouette2" \
       BuildUsage="docker build -t chouette2 ." \
       License="CECILL/B" \
       Version="3.0"

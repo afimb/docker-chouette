@@ -10,7 +10,7 @@ echo "RAILS_ENV=$RAILS_ENV"
 export RAILS_ENV=${RAILS_ENV:-production}
 
 echo "Chouette create databases..."
-bundle exec rake db:create
+bundle exec rake db:create:all
 
 echo "Chouette init postgis..."
 bundle exec rake db:gis:setup
