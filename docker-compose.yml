@@ -29,7 +29,6 @@ services:
     environment:
      - SMTP_HOST=smtp
      - TZ=Europe/Paris
-     - GIT_BRANCH=master
     links:
      - mailcatcher:smtp
      - chouette-iev:chouette-iev
