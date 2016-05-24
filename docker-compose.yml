@@ -2,6 +2,7 @@ version: '2'
 services:
   chouette-postgres:
     build: postgres
+    image: afimb/chouette-postgres
     ports: 
      - "5433:5432"
     environment:
@@ -15,6 +16,7 @@ services:
      - "1080:80"
   chouette-iev:
     build: iev
+    image: afimb/chouette-iev
     ports:
      - "8081:8080"
      - "9991:9990"
@@ -22,6 +24,7 @@ services:
      - chouette-postgres:chouette-postgres
   chouette2:
     build: chouette2
+    image: afimb/chouette2
     ports:
      - "3000:3000"
     volumes:

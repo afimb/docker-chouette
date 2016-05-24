@@ -20,7 +20,7 @@ RUN su - chouette sh -c "mkdir ~/chouette-gui"
 
 #-- Install Ruby
 RUN gpg2 --keyserver  hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-RUN curl -L https://get.rvm.io | bash -s stable --rails
+RUN \curl -sSL https://get.rvm.io | bash -s stable --rails
 RUN usermod -a -G rvm chouette
 RUN su - chouette -c "rvm install ruby-2.3.0 && rvm --default use 2.3.0 && gem install bundler && bundle config build.pg --with-pg-config=/usr/pgsql-9.4/bin/pg_config"
 
