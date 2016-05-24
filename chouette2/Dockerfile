@@ -10,7 +10,7 @@ LABEL Description="Chouette GUI" \
 RUN yum -y install epel-release && yum -y update 
 #RUN yum -y localinstall http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm
 RUN yum -y localinstall https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-2.noarch.rpm
-RUN yum -y install which tar git postgresql94-devel proj proj-devel geos-devel
+RUN yum -y install which tar git postgresql94-devel proj proj-devel geos-devel nmap
 
 #-- Add user chouette
 RUN adduser chouette
@@ -23,7 +23,7 @@ RUN usermod -a -G rvm chouette
 RUN su - chouette -c "rvm install ruby-2.3.0 && rvm --default use 2.3.0 && gem install bundler && bundle config build.pg --with-pg-config=/usr/pgsql-9.4/bin/pg_config"
 
 #-- Install Chouette 2
-RUN su - chouette -c "git clone -b develop git://github.com/afimb/chouette2 ~/chouette-gui/ && cd ~/chouette-gui && bundle install"
+RUN su - chouette -c "git clone -b $GIT_BRANCH git://github.com/afimb/chouette2 ~/chouette-gui/ && cd ~/chouette-gui && bundle install"
 
 #-- Configure Chouette2
 RUN mkdir /home/chouette/bin

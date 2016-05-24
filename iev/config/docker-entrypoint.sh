@@ -7,7 +7,7 @@ function waitWildfly {
 	while [ "$status" != "running" ];do
 		status=$(/opt/jboss/wildfly/bin/jboss-cli.sh -c --user=admin --password=admin --commands="read-attribute server-state")
 		if [ "$status" != "running" ]; then
-			echo "Waiting for Wildfly............"
+			echo "Waiting for Wildfly..."
 			sleep 1
 		fi
 	done
@@ -21,9 +21,17 @@ function initWildfly {
 	touch $INIT_FILE
 }
 
+function waitPostgres {
+  status="closed"
+  while [[ $status == *"closed"* ]];do
+    status=$(nmap -v -p 5432 chouette-postgres)
+    echo 'Waiting for Postgres...'
+    sleep 2
+  done
+  exec $@
+}
+
 [ ! -e $INIT_FILE ] && initWildfly &
 
+waitPostgres $@
 
-[ ! $# -eq 0 ] && echo "Starting wildfly...."
-exec "$@"
-[ ! $# -eq 0 ] && echo "End wildfly."

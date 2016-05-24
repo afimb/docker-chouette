@@ -9,18 +9,19 @@ LABEL Description="Chouette IEV" \
 
 USER root
 
-RUN yum -y install wget
+RUN yum -y install wget nmap
 
 USER jboss
 
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
 
 ###-- Update hibernate module
-RUN wget -q http://www.hibernatespatial.org/repository/org/hibernate/hibernate-spatial/4.3/hibernate-spatial-4.3.jar -P /tmp && \
+# wget -q http://www.hibernatespatial.org/repository/org/hibernate/hibernate-spatial/4.3/hibernate-spatial-4.3.jar -P /tmp && \
+RUN wget -q http://maven.chouette.mobi/org/hibernate/hibernate-spatial/4.3/hibernate-spatial-4.3.jar -O /tmp/hibernate-spatial.jar && \
     wget -q http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar -P /tmp && \
-    cp /tmp/hibernate-spatial-*.jar /tmp/jts-*.jar /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/ && \
+    cp /tmp/hibernate-spatial.jar /tmp/jts-*.jar /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/ && \
     cp /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml.sav && \
-    sed -i '/<resources>/a\\t<resource-root path="hibernate-spatial-4.3.jar"/>'  /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml && \
+    sed -i '/<resources>/a\\t<resource-root path="hibernate-spatial.jar"/>'  /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml && \
     sed -i '/<resources>/a\\t<resource-root path="jts-1.13.jar"/>'  /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml && \
     sed -i '/<dependencies>/a\\t<module name="org.postgres"/>'  /opt/jboss/wildfly/modules/system/layers/base/org/hibernate/main/module.xml
 
