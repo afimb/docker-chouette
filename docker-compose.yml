@@ -1,0 +1,37 @@
+version: '2'
+services:
+  chouette-postgres:
+    build: postgres
+    ports: 
+     - "5433:5432"
+    environment:
+     -  POSTGRES_PASSWORD=chouette
+     -  POSTGRES_USER=chouette
+    volumes:
+     - ./data/postgresql:/var/lib/postgresql/data
+  mailcatcher:
+    image: tophfr/mailcatcher
+    ports:
+     - "1080:80"
+  chouette-iev:
+    build: iev
+    ports:
+     - "8081:8080"
+     - "9991:9990"
+    links:
+     - chouette-postgres:chouette-postgres
+  chouette2:
+    build: chouette2
+    ports:
+     - "3000:3000"
+    volumes:
+     - ./data/referentials:/home/chouette/chouette-gui/referentials
+    environment:
+     - SMTP_HOST=smtp
+     - TZ=Europe/Paris
+     - GIT_BRANCH=master
+    links:
+     - mailcatcher:smtp
+     - chouette-iev:chouette-iev
+     - chouette-postgres:chouette-postgres
+
