@@ -11,8 +11,7 @@ function waitPostgres {
 
 waitPostgres
 
+# su chouette <<'EOF'
 /home/chouette/bin/chouette.sh
-
-tail -f /home/chouette/bin/chouette.sh
-
+# EOF
 
