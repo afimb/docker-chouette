@@ -19,9 +19,12 @@ You can see it by typing from the Docker QuickStart Terminal : `docker-machine i
 ## Start all containers
 
 ```
+docker-compose pull
 docker-compose up
 ```
 
 wait containers to be started...
 
 then go to http://localhost:3000
+also open Mailcatcher http://localhost:1080 to catch emails
+

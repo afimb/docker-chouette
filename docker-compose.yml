@@ -11,7 +11,7 @@ services:
     volumes:
      - ./data/postgresql:/var/lib/postgresql/data
   mailcatcher:
-    image: tophfr/mailcatcher
+    image: tophfr/mailcatcher:0.6.4
     ports:
      - "1080:80"
   chouette-iev:
@@ -20,6 +20,8 @@ services:
     ports:
      - "8081:8080"
      - "9991:9990"
+    volumes:
+     - ./data/referentials:/opt/jboss/referentials
     links:
      - chouette-postgres:chouette-postgres
   chouette2:
@@ -28,7 +30,7 @@ services:
     ports:
      - "3000:3000"
     volumes:
-     - ./data/referentials:/home/chouette/chouette-gui/referentials
+     - ./data/referentials:/home/chouette/referentials
     environment:
      - SMTP_HOST=smtp
      - TZ=Europe/Paris

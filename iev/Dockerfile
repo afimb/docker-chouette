@@ -37,6 +37,7 @@ EXPOSE 8080 9990
 
 COPY config/wildfly-datasources.cli /tmp/
 COPY config/docker-entrypoint.sh /
+VOLUME ["/opt/jboss/referentials"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD [ "/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
 

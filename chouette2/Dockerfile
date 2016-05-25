@@ -42,6 +42,6 @@ COPY config/database.yml /home/chouette/chouette-gui/config
 EXPOSE 3000
 
 COPY config/docker-entrypoint.sh /
-VOLUME ["/home/chouette/chouette-gui/referentials"]
+VOLUME ["/home/chouette/referentials"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

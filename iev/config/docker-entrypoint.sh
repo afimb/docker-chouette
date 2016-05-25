@@ -16,8 +16,8 @@ function waitWildfly {
 function initWildfly {
 	waitWildfly
 	/opt/jboss/wildfly/bin/jboss-cli.sh -c --user=admin --password=admin --file=/tmp/wildfly-datasources.cli
-	/opt/jboss/wildfly/bin/jboss-cli.sh -c --user=admin --password=admin --command="deploy /tmp/chouette.ear"
 	/opt/jboss/wildfly/bin/jboss-cli.sh -c --user=admin --password=admin --command="/:reload"
+	/opt/jboss/wildfly/bin/jboss-cli.sh -c --user=admin --password=admin --command="deploy /tmp/chouette.ear"
 	touch $INIT_FILE
 }
 
