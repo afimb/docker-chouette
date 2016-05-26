@@ -16,10 +16,25 @@ Then restart docker
 If your are on Mac or Windows, you must change every **localhost** with the ip address given by docker on startup.
 You can see it by typing from the Docker QuickStart Terminal : `docker-machine ip`
 
-## Start all containers
+## Getting started
+
+### Download docker-chouette
+
+```
+git clone https://github.com/afimb/docker-chouette.git
+```
+
+or download the archive: https://github.com/afimb/docker-chouette/archive/master.zip
+
+### Download the images docker
 
 ```
 docker-compose pull
+```
+
+### Start all containers
+
+```
 docker-compose up
 ```
 
