@@ -7,12 +7,5 @@ prefix_application_version: 'Latest Docker'
 deactivate_formats_referential: 'hub,sig'
 deactivate_formats_import: 'hub,sig'
 deactivate_formats_export: 'hub,sig'
-smtp_delivery_method: 'smtp'
-smtp_host: 'smtp'
-smtp_port: '25'
-smtp_domain:
-smtp_user_name:
-smtp_password:
-smtp_authentication:
 mailer_sender: 'no-reply@chouette.mobi'
 

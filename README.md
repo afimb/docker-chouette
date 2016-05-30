@@ -43,3 +43,22 @@ wait containers to be started...
 then go to http://localhost:3000
 also open Mailcatcher http://localhost:1080 to catch emails
 
+## SMTP settings
+
+If you don't want to use MailCatcher, you can use an external SMTP.
+
+Stop all the containers first and then fill all the lines in the file docker-compose.yml with the information from your provider:
+
+- smtp_host=smtp
+- smtp_port=25
+- smtp_domain=
+- smtp_user_name=
+- smtp_password=
+- smtp_authentication=
+
+and then start the containers with:
+
+```
+docker-compose up
+```
+

@@ -14,6 +14,7 @@ services:
     image: tophfr/mailcatcher:0.6.4
     ports:
      - "1080:80"
+     - "1025:25"
   chouette-iev:
     build: iev
     image: afimb/chouette-iev
@@ -32,7 +33,13 @@ services:
     volumes:
      - ./data/referentials:/home/chouette/referentials
     environment:
-     - SMTP_HOST=smtp
+     - smtp_delivery_method=smtp
+     - smtp_host=smtp
+     - smtp_port=25
+     - smtp_domain=
+     - smtp_user_name=
+     - smtp_password=
+     - smtp_authentication=
      - TZ=Europe/Paris
     links:
      - mailcatcher:smtp
