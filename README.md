@@ -1,4 +1,4 @@
-docker-chouette is a pre-installed version as docker container
+docker-chouette is a pre-installed docker container 
 of Chouette2, an open source web project in Ruby/Rails for editing and viewing Public Transport data
 For more information see https://github.com/afimb/chouette2/
 and http://www.chouette.mobi
@@ -7,7 +7,7 @@ For any question please use [the User Forum](http://forum.chouette.mobi/index.ph
 # 1. Installation in a nutshell
 If you already have docker on your machine,
 you'll just have to download and unzip https://github.com/afimb/docker-chouette/archive/master.zip 
-and then do for launching the application:
+and then launch the application with:
 ```docker-compose pull
 docker-compose up -d```
 
@@ -57,7 +57,36 @@ sudo usermod -a -G docker nom_utilisateur
 ```
 Then, restart docker
 
-## 3.4 How to launch "Chouette2" at startup
+## 3.4 Retrieve and Start the application
+### Download docker-chouette
+```
+mkdir -p /opt/chouette && git clone https://github.com/afimb/docker-chouette.git /opt/chouette
+```
+
+or if you don't have git, download the archive: https://github.com/afimb/docker-chouette/archive/master.zip and unzip archive into /opt/chouette
+
+### Download the docker images
+```
+cd /opt/chouette
+docker-compose pull
+```
+
+### Start all containers
+```
+cd /opt/chouette
+docker-compose up
+```
+
+### Use the Application
+wait until containers start...
+
+then go to http://localhost:3000
+also open Mailcatcher http://localhost:1080 to catch e-mails
+
+For docker-toolbox on Mac or Windows: you must change every localhost with the ip address given by docker on startup (see below)
+From the Docker QuickStart Terminal, ```docker-machine ip``` will give your ip address.
+
+## 3.5 How to launch "Chouette2" at startup
 
 ### Systemd script
 You need to create chouette.service in /usr/lib/systemd/system/
@@ -90,39 +119,16 @@ Enable service at boot:
 ```
 sudo systemctl enable chouette.service
 ```
+and then start the containers with:
+```
+docker-compose up
+```
 
 ### System V (init) script
 TODO
 
-## 3.5 Started the application
-### Download docker-chouette
-```
-mkdir -p /opt/chouette && git clone https://github.com/afimb/docker-chouette.git /opt/chouette
-```
 
-or if you don't have git, download the archive: https://github.com/afimb/docker-chouette/archive/master.zip and unzip archive into /opt/chouette
-
-### Download the docker images
-```
-cd /opt/chouette
-docker-compose pull
-```
-
-### Start all containers
-```
-cd /opt/chouette
-docker-compose up
-```
-
-wait until containers start...
-
-then go to http://localhost:3000
-also open Mailcatcher http://localhost:1080 to catch emails
-
-For docker-toolbox on Mac or Windows: you must change every localhost with the ip address given by docker on startup (see below)
-From the Docker QuickStart Terminal, ```docker-machine ip``` will give your ip address.
-
-### SMTP settings
+## 3.6 SMTP settings
 If you don't want to use MailCatcher, you can use an external SMTP.
 Stop all the containers first and then fill all the lines in the file docker-compose.yml with the information from your provider:
 - smtp_host=smtp
@@ -132,12 +138,9 @@ Stop all the containers first and then fill all the lines in the file docker-com
 - smtp_password=
 - smtp_authentication=
 
-and then start the containers with:
-```
-docker-compose up
-```
 
-# 4. Detailed installation instruction for docker-toolbox on Mac or Windows (also valid for Linux):
+
+# 4. Detailed installation instruction for docker-toolbox on Mac or Windows (also valid for Linux!):
 
 - if you want to understand docker, read this https://docs.docker.com/windows/ 
 - until Docker for Windows/Mac is released ([in beta now](https://blog.docker.com/2016/03/docker-for-mac-windows-beta/), and only for Windows 10 and above), you'll have to [install the docker toolbox](https://www.docker.com/products/docker-toolbox), which includes docker-compose ;
