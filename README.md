@@ -7,6 +7,7 @@ For any question please use [the User Forum](http://forum.chouette.mobi/index.ph
 # 1. Installation in a nutshell
 If you already have docker on your machine,
 you'll just have to download and unzip https://github.com/afimb/docker-chouette/archive/master.zip 
+(which contains the instructions for composing the 3 images located at https://hub.docker.com/r/afimb)
 and then launch the application with:
 ```docker-compose pull
 docker-compose up -d```
