@@ -1,13 +1,21 @@
-Chouette2 is an open source web project in Ruby/Rails for editing and viewing Public Transport data
+docker-chouette is a pre-installed version as docker container
+of Chouette2, an open source web project in Ruby/Rails for editing and viewing Public Transport data
 For more information see https://github.com/afimb/chouette2/
 and http://www.chouette.mobi
 For any question please use [the User Forum](http://forum.chouette.mobi/index.php) or [Contact us](http://www.chouette.mobi/club-utilisateurs/contact-support/) !
 
+## Installation
+If you already have docker on your machine,
+you'll just have to download and unzip https://github.com/afimb/docker-chouette/archive/master.zip 
+and then do for launching the application:
+```docker-compose pull
+docker-compose up -d```
+
 ## Prerequisites
-Chouette2 is now proposed in the form of docker containers.
-In order to run chouette2/docker you have to use docker-compose v1.7.1 which needs docker version 1.10 (or newer).
-Only Centos 7 has been tested, but chouette/docker will work on any Linux distribution if docker 1.10 (or newer) is available.
-To retrieve "Chouette" git has also to be installed.
+- docker-compose v1.7.1
+- docker version 1.10 (or newer)
+Only Centos 7 has been tested, but it should work on any Linux distribution
+For Windows and MacOS, see the last section of this readme
 
 ## For Linux / Centos7
 ### Docker installation
@@ -96,7 +104,7 @@ You can see it by typing from the Docker QuickStart Terminal : ```docker-machine
 mkdir -p /opt/chouette && git clone https://github.com/afimb/docker-chouette.git /opt/chouette
 ```
 
-or download the archive: https://github.com/afimb/docker-chouette/archive/master.zip and unzip archive into /opt/chouette
+or if you don't have git, download the archive: https://github.com/afimb/docker-chouette/archive/master.zip and unzip archive into /opt/chouette
 
 ### Download the images docker
 ```
