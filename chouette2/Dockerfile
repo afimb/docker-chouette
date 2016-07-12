@@ -1,7 +1,7 @@
 FROM centos:6.6
 MAINTAINER Cityway
 
-ENV GIT_BRANCH V3_3
+ENV GIT_BRANCH master
 
 LABEL Description="Chouette GUI" \
       Usage="docker run -it --name chouette2 --link chouette-postgres:chouette-postgres --link smtp:smtp --link chouette-iev:chouette-iev -p 3000:3000 -d chouette2" \
