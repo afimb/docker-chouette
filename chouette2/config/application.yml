@@ -1,4 +1,3 @@
-domain_name: 'localhost:3000'
 secret_key_base: '04f58176594e0570ef0cdf42973ec230dc60a07142a41c9efc4eda572633bde3c16ed3d7c1828800a808e15cbaef5894a31354a18172d9995'
 devise_secret_key: '04f58176594e0570ef0cdf42973ec230dc60a07142a41c9efc4eda572633bde3c16ed3d7c1828800a808e15cbaef5894a31354a18172d9995'
 api_endpoint: 'http://chouette-iev:8080/chouette_iev/'
