@@ -40,6 +40,8 @@ services:
      - smtp_user_name=
      - smtp_password=
      - smtp_authentication=
+     - smtp_openssl_verify_mode=
+     - smtp_enable_starttls_auto=
      - TZ=Europe/Paris
     links:
      - mailcatcher:smtp
