@@ -1,16 +1,25 @@
-Chouette2 is an open source web project in Ruby/Rails for editing and viewing Public Transport data
+docker-chouette is a pre-installed docker container 
+of Chouette2, an open source web project in Ruby/Rails for editing and viewing Public Transport data
 For more information see https://github.com/afimb/chouette2/
 and http://www.chouette.mobi
 For any question please use [the User Forum](http://forum.chouette.mobi/index.php) or [Contact us](http://www.chouette.mobi/club-utilisateurs/contact-support/) !
 
-## Prerequisites
-Chouette2 is now proposed in the form of docker containers.
-In order to run chouette2/docker you have to use docker-compose v1.7.1 which needs docker version 1.10 (or newer).
-Only Centos 7 has been tested, but chouette/docker will work on any Linux distribution if docker 1.10 (or newer) is available.
-To retrieve "Chouette" git has also to be installed.
+# 1. Installation in a nutshell
+If you already have docker on your machine,
+you'll just have to download and unzip https://github.com/afimb/docker-chouette/archive/master.zip 
+(which contains the instructions for composing the 3 images located at https://hub.docker.com/r/afimb)
+and then launch the application with:
+```docker-compose pull
+docker-compose up -d```
 
-## For Linux / Centos7
-### Docker installation
+# 2. Prerequisites
+- docker-compose v1.7.1
+- docker version 1.10 (or newer)
+Only Centos 7 has been tested, but it should work on any Linux distribution
+For Windows and MacOS, see the last section of this readme
+
+# 3. For Linux / Centos7
+## 3.1 Docker installation
 Add yum docker.repo :
 
 ```
@@ -28,7 +37,7 @@ EOF
 sudo yum install -y docker-engine git
 ```
 
-### docker-compose installation
+## 3.2 docker-compose installation
 ```
 curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 ```
@@ -37,7 +46,7 @@ curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
-### Run docker without root permissions
+## 3.3 Run docker without root permissions
 If you are new to docker : so as to avoid lauching docker with sudo, docker, you'll need to add your user to the docker group (if it doesn't exist : `sudo groupadd docker`) ;
 for Ubuntu the command will be
 ```
@@ -49,9 +58,38 @@ sudo usermod -a -G docker nom_utilisateur
 ```
 Then, restart docker
 
-### Launch "Chouette2" at startup
+## 3.4 Retrieve and Start the application
+### Download docker-chouette
+```
+mkdir -p /opt/chouette && git clone https://github.com/afimb/docker-chouette.git /opt/chouette
+```
 
-#### Systemd script
+or if you don't have git, download the archive: https://github.com/afimb/docker-chouette/archive/master.zip and unzip archive into /opt/chouette
+
+### Download the docker images
+```
+cd /opt/chouette
+docker-compose pull
+```
+
+### Start all containers
+```
+cd /opt/chouette
+docker-compose up
+```
+
+### Use the Application
+wait until containers start...
+
+then go to http://localhost:3000
+also open Mailcatcher http://localhost:1080 to catch e-mails
+
+For docker-toolbox on Mac or Windows: you must change every localhost with the ip address given by docker on startup (see below)
+From the Docker QuickStart Terminal, ```docker-machine ip``` will give your ip address.
+
+## 3.5 How to launch "Chouette2" at startup
+
+### Systemd script
 You need to create chouette.service in /usr/lib/systemd/system/
 ```
 sudo tee /usr/lib/systemd/system/chouette.service <<-'EOF'
@@ -82,40 +120,16 @@ Enable service at boot:
 ```
 sudo systemctl enable chouette.service
 ```
-
-#### System V (init) script
-TODO
-
-## For docker-toolbox on Mac or Windows:
-If your are on Mac or Windows, you must change every localhost with the ip address given by docker on startup.
-You can see it by typing from the Docker QuickStart Terminal : ```docker-machine ip```
-
-## Getting started
-### Download docker-chouette
+and then start the containers with:
 ```
-mkdir -p /opt/chouette && git clone https://github.com/afimb/docker-chouette.git /opt/chouette
-```
-
-or download the archive: https://github.com/afimb/docker-chouette/archive/master.zip and unzip archive into /opt/chouette
-
-### Download the images docker
-```
-cd /opt/chouette
-docker-compose pull
-```
-
-### Start all containers
-```
-cd /opt/chouette
 docker-compose up
 ```
 
-wait containers to be started...
+### System V (init) script
+TODO
 
-then go to http://localhost:3000
-also open Mailcatcher http://localhost:1080 to catch emails
 
-## SMTP settings
+## 3.6 SMTP settings
 If you don't want to use MailCatcher, you can use an external SMTP.
 Stop all the containers first and then fill all the lines in the file docker-compose.yml with the information from your provider:
 - smtp_host=smtp
@@ -125,12 +139,9 @@ Stop all the containers first and then fill all the lines in the file docker-com
 - smtp_password=
 - smtp_authentication=
 
-and then start the containers with:
-```
-docker-compose up
-```
 
-## Detailed installation instruction for docker-toolbox on Mac or Windows (also valid for Linux):
+
+# 4. Detailed installation instruction for docker-toolbox on Mac or Windows (also valid for Linux!):
 
 - if you want to understand docker, read this https://docs.docker.com/windows/ 
 - until Docker for Windows/Mac is released ([in beta now](https://blog.docker.com/2016/03/docker-for-mac-windows-beta/), and only for Windows 10 and above), you'll have to [install the docker toolbox](https://www.docker.com/products/docker-toolbox), which includes docker-compose ;
