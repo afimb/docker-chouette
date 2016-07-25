@@ -45,6 +45,7 @@ services:
      - smtp_openssl_verify_mode=
      - smtp_enable_starttls_auto=
      - TZ=Europe/Paris
+     - google_api_key=
     links:
      - mailcatcher:smtp
      - chouette-iev:chouette-iev
