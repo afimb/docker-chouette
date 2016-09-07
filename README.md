@@ -140,6 +140,11 @@ Stop all the containers first and then fill all the lines in the file docker-com
 - smtp_authentication=
 
 
+## 3.7 Google API Key
+If you want to use Google API services, you must specify a key https://developers.google.com/maps/documentation/javascript/get-api-key
+Fill the field with your key:
+- google_api_key=
+
 
 # 4. Detailed installation instruction for docker-toolbox on Mac or Windows (also valid for Linux!):
 
