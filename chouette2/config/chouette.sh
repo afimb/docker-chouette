@@ -17,5 +17,5 @@ echo "Chouette migrate..."
 bin/rake db:migrate
 
 echo "Chouette Ruby starting..."
-bin/rails s
+bin/rails s -b 0.0.0.0 -p 3000
 
