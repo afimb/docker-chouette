@@ -1,4 +1,4 @@
-FROM postgres:9.4
+FROM mdillon/postgis:9.4
 MAINTAINER Cityway
 
 LABEL Description="Chouette DB" \
@@ -6,8 +6,6 @@ LABEL Description="Chouette DB" \
       BuildUsage="docker build -t chouette-postgres ." \
       License="CECILL/B" \
       Version="3.0"
-
-RUN apt-get update && apt-get install -y postgresql-9.4-postgis-2.2 postgresql-contrib-9.4
 
 COPY docker-entrypoint-initdb.d/* /docker-entrypoint-initdb.d/
 
