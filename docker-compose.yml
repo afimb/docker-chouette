@@ -15,6 +15,10 @@ services:
     ports:
      - "1080:80"
      - "1025:25"
+  redis:
+    image: redis
+    ports:
+     - "6379:6379"
   chouette-iev:
     build: iev
     image: afimb/chouette-iev:develop
@@ -46,8 +50,10 @@ services:
      - smtp_enable_starttls_auto=
      - TZ=Europe/Paris
      - google_api_key=
+     - REDIS_URL=redis://redis:6379
     links:
      - mailcatcher:smtp
      - chouette-iev:chouette-iev
      - chouette-postgres:chouette-postgres
+     - redis:redis
 
