@@ -12,4 +12,7 @@ IEV_HOST: 'http://chouette-iev'
 IEV_PORT: '8080'
 IEV_PATH: 'chouette_iev'
 iev_admin_key: 'admin'
+CHECK_GTE3: 'false'
+SPEC_VALIDATION_URL_PROD: 'http://www.chouette.mobi/validation/V2_3'
+SPEC_VALIDATION_URL: 'http://preview.chouette.cityway.fr/validation/v24'
 
