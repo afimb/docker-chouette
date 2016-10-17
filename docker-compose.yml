@@ -27,7 +27,7 @@ services:
      - chouette-postgres:chouette-postgres
   chouette2:
     build: chouette2
-    image: afimb/chouette2
+    image: afimb/chouette2:v3.3
     ports:
      - "3000:3000"
     volumes:
