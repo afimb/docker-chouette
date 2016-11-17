@@ -9,8 +9,8 @@ LABEL Description="Chouette GUI" \
       License="CECILL/B" \
       Version="3.0"
 
+RUN yum -y install yum-plugin-ovl
 RUN yum -y install epel-release && yum -y update 
-#RUN yum -y localinstall http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm
 RUN yum -y localinstall https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-2.noarch.rpm
 RUN yum -y install which tar git postgresql94-devel proj proj-devel geos-devel nmap bzip2 zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make autoconf automake libtool bison curl sqlite-devel
 
