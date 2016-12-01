@@ -4,7 +4,7 @@ services:
     build:
       context: postgres
       dockerfile: Dockerfile
-    image: afimb/chouette-postgres:beta
+    image: afimb/chouette-postgres:latest
     ports: 
      - "5433:5432"
     environment:
@@ -24,8 +24,8 @@ services:
   chouette-iev:
     build:
       context: iev
-      dockerfile: beta/Dockerfile
-    image: afimb/chouette-iev:beta
+      dockerfile: Dockerfile
+    image: afimb/chouette-iev:latest
     ports:
      - "8081:8080"
      - "9991:9990"
@@ -36,8 +36,8 @@ services:
   chouette2:
     build:
       context: chouette2
-      dockerfile: beta/Dockerfile
-    image: afimb/chouette2:beta
+      dockerfile: Dockerfile
+    image: afimb/chouette2:latest
     ports:
      - "3000:3000"
     volumes:
