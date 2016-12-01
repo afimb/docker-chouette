@@ -9,8 +9,11 @@ If you already have docker on your machine,
 you'll just have to download and unzip https://github.com/afimb/docker-chouette/archive/master.zip 
 (which contains the instructions for composing the 3 images located at https://hub.docker.com/r/afimb)
 and then launch the application with:
-```docker-compose pull
-docker-compose up -d```
+
+```
+docker-compose pull
+docker-compose up -d
+```
 
 # 2. Prerequisites
 - docker-compose v1.7.1
@@ -140,6 +143,11 @@ Stop all the containers first and then fill all the lines in the file docker-com
 - smtp_authentication=
 
 
+## 3.7 Google API Key
+If you want to use Google API services, you must specify a key https://developers.google.com/maps/documentation/javascript/get-api-key
+Fill the field with your key:
+- google_api_key=
+
 
 # 4. Detailed installation instruction for docker-toolbox on Mac or Windows (also valid for Linux!):
 
@@ -156,3 +164,19 @@ Stop all the containers first and then fill all the lines in the file docker-com
 - when you first sign up (create an organisation and user), you'll have to validate your account by going to mailCatcher (your_docker-machine_ip_address:1080) and click in the e-mail you'll just received (change the localhost address into your_docker-machine_ip_address)
 - sign in with your Chouette user name and you can use the application
 - if needed you can connect the Chouette PostgreSQL database from  PGADMIN (create a server with host: your_docker-machine_ip_address, port: 5433, user: chouette, password: chouette)
+
+# 5. Trouble with shared folders for docker-machine version for windows
+
+If you have any trouble with shared folders you can have a look at the code below.
+
+```
+$env:Path += "C:\Program Files\Oracle\VirtualBox"
+
+VBoxManage sharedfolder add default --name "chouette-iev" --hostpath "C:\PATH\TO\YOUR\docker-chouette-develop" --transient
+ 
+docker-machine ssh default sudo mkdir -p /c/PATH/TO/YOUR/docker-chouette-develop
+ 
+docker-machine ssh default 
+
+sudo mount -t vboxsf -o defaults,uid=`id -u docker`,gid=`id -g docker` "chouette-iev" /c/PATH/TO/YOUR/docker-chouette-develop
+```

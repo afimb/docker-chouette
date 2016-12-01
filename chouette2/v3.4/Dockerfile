@@ -1,10 +1,11 @@
 FROM centos:6.6
 MAINTAINER Cityway
 
-ENV GIT_BRANCH V3_3
+ENV GIT_BRANCH V3_4
+ENV RUBY_VERSION 2.3.3
 
 LABEL Description="Chouette GUI" \
-      Usage="docker run -it --name chouette2 --link chouette-postgres:chouette-postgres --link smtp:smtp --link chouette-iev:chouette-iev -p 3000:3000 -d chouette2" \
+      Usage="docker run -it --name chouette2 --link chouette-postgres:chouette-postgres --link smtp:smtp --link redis:redis --link chouette-iev:chouette-iev -p 3000:3000 -d chouette2" \
       BuildUsage="docker build -t chouette2 ." \
       License="CECILL/B" \
       Version="3.0"
@@ -26,7 +27,7 @@ RUN mkdir ~/chouette-gui && \
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build && \
     source ~/.bash_profile && \
     type rbenv && \
-    rbenv install 2.3.1 && rbenv global 2.3.1 && \
+    rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && \
     gem install bundler && bundle config build.pg --with-pg-config=/usr/pgsql-9.4/bin/pg_config && \
     git clone -b $GIT_BRANCH git://github.com/afimb/chouette2 ~/chouette-gui/ && \
     cd ~/chouette-gui && bundle install && \
@@ -44,4 +45,3 @@ EXPOSE 3000
 COPY config/docker-entrypoint.sh /
 VOLUME ["/home/chouette/referentials"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
