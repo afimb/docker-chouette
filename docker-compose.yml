@@ -1,8 +1,10 @@
 version: '2'
 services:
   chouette-postgres:
-    build: postgres
-    image: afimb/chouette-postgres:v3.4
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    image: afimb/chouette-postgres:develop
     ports: 
      - "5433:5432"
     environment:
@@ -20,8 +22,10 @@ services:
     ports:
      - "6379:6379"
   chouette-iev:
-    build: iev
-    image: afimb/chouette-iev:v3.4
+    build:
+      context: iev
+      dockerfile: develop/Dockerfile
+    image: afimb/chouette-iev:develop
     ports:
      - "8081:8080"
      - "9991:9990"
@@ -30,8 +34,10 @@ services:
     links:
      - chouette-postgres:chouette-postgres
   chouette2:
-    build: chouette2
-    image: afimb/chouette2:v3.4
+    build:
+      context: chouette2
+      dockerfile: develop/Dockerfile
+    image: afimb/chouette2:develop
     ports:
      - "3000:3000"
     volumes:
