@@ -10,6 +10,9 @@ cd $CHOUETTE_HOME/chouette-gui/
 echo "RAILS_ENV=$RAILS_ENV"
 export RAILS_ENV=${RAILS_ENV:-production}
 
+echo "Remove old PID file..."
+rm -f tmp/pids/server.pid
+
 echo "Chouette init postgis..."
 bin/rake db:gis:setup
 
