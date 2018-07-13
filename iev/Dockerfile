@@ -1,7 +1,7 @@
 FROM jboss/wildfly:9.0.2.Final
 MAINTAINER Cityway
 
-ENV IEV_VERSION 3.4.1
+ENV IEV_VERSION 3.4.5
 
 LABEL Description="Chouette IEV" \
       Usage="docker run -it --name chouette-iev --link chouette-postgres:chouette-postgres -p 9991:9990 -p 8081:8080 -d chouette-iev" \
